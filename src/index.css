@@ -1,26 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Reem+Kufi:wght@400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap');
 @import 'tailwindcss';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --bg: #faf6ef;
-  --surface: #ffffff;
-  --ink: #251f18;
-  --muted: #6f6558;
-  --gold: #b8894a;
-  --line: rgba(37, 31, 24, 0.12);
-  --glass-bg: rgba(255, 255, 255, 0.66);
+  --bg: #f7f1e5;
+  --surface: #fffdf8;
+  --ink: #2a231a;
+  --muted: #6f6353;
+  --gold: #ad7d33;
+  --gold-soft: #cfa85f;
+  --green: #1f6b46;
+  --sand: #e6d6ba;
+  --line: rgba(42, 35, 26, 0.14);
+  --glass-bg: rgba(255, 253, 248, 0.62);
+  --glass-sheen: rgba(255, 255, 255, 0.55);
+  --pattern-ink: #ad7d33;
 }
 
 .dark {
-  --bg: #171310;
-  --surface: #1f1a15;
-  --ink: #f3ece1;
-  --muted: #a89a87;
-  --gold: #c9a05e;
-  --line: rgba(243, 236, 225, 0.12);
-  --glass-bg: rgba(35, 29, 23, 0.6);
+  --bg: #332a20;
+  --surface: #423729;
+  --ink: #f8f1e5;
+  --muted: #d3c4ac;
+  --gold: #e0b978;
+  --gold-soft: #f0d3a0;
+  --green: #46a874;
+  --sand: #5c4c37;
+  --line: rgba(248, 241, 229, 0.16);
+  --glass-bg: rgba(84, 71, 55, 0.5);
+  --glass-sheen: rgba(255, 236, 200, 0.28);
+  --pattern-ink: #e0b978;
 }
 
 @theme inline {
@@ -29,18 +39,42 @@
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-green: var(--green);
+  --color-sand: var(--sand);
   --color-line: var(--line);
   --font-sans: 'Tajawal', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Reem Kufi', 'Tajawal', ui-sans-serif, sans-serif;
+  --font-arabic: 'Amiri', 'Reem Kufi', serif;
   --animate-marquee: marquee 38s linear infinite;
+  --animate-glass: glass-pan 10s ease-in-out infinite;
+  --animate-float: float-soft 7s ease-in-out infinite;
 
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
+  @keyframes glass-pan {
+    0% { background-position: 200% 50%; }
+    100% { background-position: -100% 50%; }
+  }
+  @keyframes float-soft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+section[id],
+footer[id] {
+  scroll-margin-top: 96px;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
 }
 
 body {
@@ -50,17 +84,78 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+h1, h2, h3 {
+  font-family: 'Tajawal', ui-sans-serif, system-ui, sans-serif;
+}
+
+html[lang='ar'] h1,
+html[lang='ar'] h2,
+html[lang='ar'] h3 {
+  font-family: 'Reem Kufi', 'Tajawal', sans-serif;
+}
+
+.font-display { font-family: 'Reem Kufi', 'Tajawal', sans-serif; }
+.font-arabic { font-family: 'Amiri', 'Reem Kufi', serif; }
+
+/* ---- Animated "moment glass" ---- */
 .glass {
-  background: var(--glass-bg);
+  background-color: var(--glass-bg);
+  background-image: linear-gradient(
+    115deg,
+    transparent 0%,
+    var(--glass-sheen) 42%,
+    transparent 68%
+  );
+  background-size: 260% 100%;
+  background-repeat: no-repeat;
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
   border: 1px solid var(--line);
-  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.28);
+  animation: glass-pan var(--glass-speed, 10s) ease-in-out infinite;
+  transition: border-color 0.5s ease, box-shadow 0.5s ease, transform 0.4s ease;
 }
 
-.marquee-mask {
-  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+.glass:hover {
+  border-color: color-mix(in srgb, var(--gold) 55%, transparent);
+  box-shadow: 0 24px 60px -20px color-mix(in srgb, var(--gold) 45%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass { animation: none; background-image: none; }
+}
+
+/* ---- Saudi / Najdi cultural accents ---- */
+.pattern-girih {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23ad7d33' stroke-width='0.9'%3E%3Cpath d='M42 2 L50 34 L82 42 L50 50 L42 82 L34 50 L2 42 L34 34 Z'/%3E%3Crect x='22' y='22' width='40' height='40' transform='rotate(45 42 42)'/%3E%3Ccircle cx='42' cy='42' r='13'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 84px 84px;
+}
+
+.dark .pattern-girih {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23e0b978' stroke-width='0.9'%3E%3Cpath d='M42 2 L50 34 L82 42 L50 50 L42 82 L34 50 L2 42 L34 34 Z'/%3E%3Crect x='22' y='22' width='40' height='40' transform='rotate(45 42 42)'/%3E%3Ccircle cx='42' cy='42' r='13'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.sadu-rail {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='80' viewBox='0 0 40 80'%3E%3Cpolygon points='0,40 20,0 40,40' fill='%23ad7d33'/%3E%3Cpolygon points='0,80 20,40 40,80' fill='%231f6b46'/%3E%3Cpolygon points='0,60 20,20 40,60' fill='none' stroke='%23cfa85f' stroke-width='2'/%3E%3Cpolygon points='0,20 20,60 40,20' fill='none' stroke='%231f6b46' stroke-width='2'/%3E%3C/svg%3E");
+  background-size: 40px 80px;
+  opacity: 0.22;
+}
+
+.ornament-star {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 2 L24 16 L38 20 L24 24 L20 38 L16 24 L2 20 L16 16 Z' fill='%23ad7d33'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.divider-sadu {
+  height: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10' viewBox='0 0 20 10'%3E%3Cpolygon points='0,10 10,0 20,10' fill='none' stroke='%23ad7d33' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-size: 20px 10px;
+  opacity: 0.5;
+}
+
+.glass-hairline {
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--gold) 60%, transparent), transparent);
 }
 
 ::selection {
@@ -77,4 +172,9 @@ body {
 ::-webkit-scrollbar-thumb {
   background: color-mix(in srgb, var(--gold) 55%, var(--bg));
   border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-marquee, .animate-float { animation: none !important; }
 }

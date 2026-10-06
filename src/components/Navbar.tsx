@@ -38,7 +38,7 @@ export default function Navbar() {
             <img src="/logo.png" alt="Masar" className="w-full h-full object-contain" />
           </div>
           <div className="leading-tight">
-            <div className="font-extrabold text-lg tracking-wide text-white drop-shadow-sm group-hover:text-gold transition-colors" style={{ color: scrolled ? 'var(--ink)' : undefined }}>
+            <div className="font-display font-extrabold text-lg tracking-wide text-white drop-shadow-sm group-hover:text-gold transition-colors" style={{ color: scrolled ? 'var(--ink)' : undefined }}>
               {t.nav.brand}
             </div>
             <div className="text-[10px] tracking-[0.2em] uppercase text-gold font-semibold">

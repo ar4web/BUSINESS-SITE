@@ -27,16 +27,19 @@ export default function Footer() {
 
   return (
     <footer id="contact" className="relative pt-24 md:pt-32 overflow-hidden">
+      <div className="divider-sadu absolute inset-x-0 top-0 h-2.5" />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 start-0 w-[600px] h-[400px] rounded-full bg-gold/6 blur-[140px]" />
+        <div className="absolute top-24 end-0 w-[420px] h-[320px] rounded-full bg-green/8 blur-[130px]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-5 md:px-8">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20">
           <Reveal>
             <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-8 bg-gold/60" />
-              <span className="text-gold tracking-[0.25em] uppercase text-xs font-bold">{t.nav.contact}</span>
+              <span className="h-px w-8 bg-gradient-to-r from-transparent to-gold/70" />
+              <span className="ornament-star inline-block h-3.5 w-3.5 opacity-80" />
+              <span className="font-display text-gold tracking-[0.25em] uppercase text-xs font-bold">{t.nav.contact}</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-extrabold text-ink leading-tight">{t.footer.title}</h2>
             <p className="mt-5 text-muted text-lg leading-relaxed max-w-lg">{t.footer.sub}</p>
@@ -95,11 +98,11 @@ export default function Footer() {
               ) : (
                 <div className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <input required placeholder={t.footer.name} className={inputCls} />
-                    <input required type="email" placeholder={t.footer.email} className={inputCls} />
+                    <input required aria-label={t.footer.name} autoComplete="name" placeholder={t.footer.name} className={inputCls} />
+                    <input required type="email" aria-label={t.footer.email} autoComplete="email" placeholder={t.footer.email} className={inputCls} />
                   </div>
-                  <input placeholder={t.footer.company} className={inputCls} />
-                  <textarea required rows={5} placeholder={t.footer.message} className={`${inputCls} resize-none`} />
+                  <input aria-label={t.footer.company} autoComplete="organization" placeholder={t.footer.company} className={inputCls} />
+                  <textarea required rows={5} aria-label={t.footer.message} placeholder={t.footer.message} className={`${inputCls} resize-none`} />
                   <button
                     type="submit"
                     className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gold text-[#1c1610] font-bold hover:brightness-110 transition-all shadow-xl shadow-gold/20"

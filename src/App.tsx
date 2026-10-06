@@ -1,4 +1,5 @@
 import { I18nProvider } from './lib/i18n';
+import CulturalAccents from './components/CulturalAccents';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
@@ -15,21 +16,24 @@ import Footer from './components/Footer';
 export default function App() {
   return (
     <I18nProvider>
-      <div className="min-h-screen bg-bg text-ink antialiased">
-        <Navbar />
-        <main>
-          <Hero />
-          <Stats />
-          <About />
-          <Sectors />
-          <Compliance />
-          <Partners />
-          <Stories />
-          <Gallery />
-          <Process />
-          <News />
-        </main>
-        <Footer />
+      <div className="relative min-h-screen text-ink antialiased">
+        <CulturalAccents />
+        <div className="relative z-10">
+          <Navbar />
+          <main>
+            <Hero />
+            <Stats />
+            <About />
+            <Sectors />
+            <Compliance />
+            <Partners />
+            <Stories />
+            <Gallery />
+            <Process />
+            <News />
+          </main>
+          <Footer />
+        </div>
       </div>
     </I18nProvider>
   );
