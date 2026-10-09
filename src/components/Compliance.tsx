@@ -20,7 +20,7 @@ export default function Compliance() {
           {t.compliance.metrics.map((m, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <div className="glass rounded-3xl p-8 h-full text-center hover:-translate-y-1.5 transition-transform duration-300">
-                <div className="text-4xl md:text-5xl font-extrabold text-gold">
+                <div className="font-display text-4xl md:text-5xl font-extrabold text-gold-gradient">
                   <CountUp value={m.value} suffix={m.suffix} />
                 </div>
                 <p className="mt-3 text-muted font-medium leading-snug">{m.label}</p>

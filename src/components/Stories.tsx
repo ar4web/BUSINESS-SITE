@@ -1,11 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { SectionHeader } from './Reveal';
 import Reveal from './Reveal';
 import { useI18n } from '../lib/i18n';
 
-const photos = ['/images/story-1.jpg', '/images/story-2.jpg', '/images/story-3.jpg'];
+const initials = (n: string) =>
+  n
+    .split(/\s+/)
+    .filter((w) => w.length > 1 && !w.endsWith('.'))
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('')
+    .toUpperCase();
 
 export default function Stories() {
   const { t, dir } = useI18n();
@@ -36,6 +43,7 @@ export default function Stories() {
         <Reveal delay={0.1}>
           <div className="relative mt-14 glass rounded-[2.5rem] p-8 md:p-14 overflow-hidden min-h-[340px]">
             <Quote size={90} className="absolute -top-3 -start-3 text-gold/10 rtl:-scale-x-100" />
+            <div className="divider-sadu absolute inset-x-0 top-0 h-2.5" />
             <AnimatePresence mode="wait" custom={dirn}>
               <motion.div
                 key={index}
@@ -45,15 +53,18 @@ export default function Stories() {
                 transition={{ duration: 0.45, ease: 'easeOut' }}
                 className="relative"
               >
+                <div className="flex gap-1 mb-5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} size={15} className="text-gold fill-gold" />
+                  ))}
+                </div>
                 <p className="text-ink text-lg md:text-2xl leading-relaxed font-medium">
                   “{item.quote}”
                 </p>
                 <div className="mt-8 flex items-center gap-4">
-                  <img
-                    src={photos[index]}
-                    alt={item.name}
-                    className="w-14 h-14 rounded-full object-cover ring-2 ring-gold/50"
-                  />
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-gold-soft to-gold text-[#1c1610] flex items-center justify-center font-display font-extrabold text-lg ring-2 ring-gold/40 shadow-lg shadow-gold/25">
+                    {initials(item.name)}
+                  </div>
                   <div>
                     <div className="font-bold text-ink">{item.name}</div>
                     <div className="text-muted text-sm">{item.role}</div>

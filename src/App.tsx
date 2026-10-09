@@ -34,6 +34,7 @@ export default function App() {
           </main>
           <Footer />
         </div>
+        <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-30 grain opacity-40" />
       </div>
     </I18nProvider>
   );

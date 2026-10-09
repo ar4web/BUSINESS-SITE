@@ -79,7 +79,12 @@ button:not(:disabled) {
 
 body {
   font-family: 'Tajawal', ui-sans-serif, system-ui, sans-serif;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(1200px 620px at 10% -8%, color-mix(in srgb, var(--gold) 13%, transparent), transparent 62%),
+    radial-gradient(1050px 560px at 102% 6%, color-mix(in srgb, var(--green) 9%, transparent), transparent 58%),
+    radial-gradient(950px 760px at 50% 118%, color-mix(in srgb, var(--gold) 11%, transparent), transparent 62%);
+  background-attachment: fixed;
   color: var(--ink);
   transition: background-color 0.4s ease, color 0.4s ease;
 }
@@ -156,6 +161,72 @@ html[lang='ar'] h3 {
 
 .glass-hairline {
   background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--gold) 60%, transparent), transparent);
+}
+
+/* ---- Cinematic photo treatment ---- */
+.photo-grade {
+  filter: saturate(1.06) contrast(1.05) brightness(1.02) sepia(0.05);
+}
+.photo-grade-dark {
+  filter: saturate(1.02) contrast(1.06) brightness(0.96) sepia(0.06);
+}
+
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+}
+
+.vignette::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 40%, transparent 45%, rgba(16, 12, 8, 0.55) 100%);
+}
+
+/* ---- Premium card frame ---- */
+.card-frame {
+  position: relative;
+  border-radius: 1.75rem;
+  background:
+    linear-gradient(var(--glass-bg), var(--glass-bg)) padding-box,
+    linear-gradient(140deg, color-mix(in srgb, var(--gold) 70%, transparent), transparent 40%, color-mix(in srgb, var(--gold) 35%, transparent)) border-box;
+  border: 1px solid transparent;
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: 0 26px 60px -28px rgba(0, 0, 0, 0.4);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(100deg, var(--gold-soft), var(--gold) 45%, color-mix(in srgb, var(--gold) 70%, #6b4a17));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.section-glow {
+  background:
+    radial-gradient(700px 340px at 50% -10%, color-mix(in srgb, var(--gold) 12%, transparent), transparent 70%);
+}
+
+.sadu-divider-band {
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--gold) 55%, transparent) 0 10px,
+    transparent 10px 20px,
+    color-mix(in srgb, var(--green) 45%, transparent) 20px 30px,
+    transparent 30px 40px
+  );
 }
 
 ::selection {

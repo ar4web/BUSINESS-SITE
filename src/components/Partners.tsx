@@ -19,9 +19,9 @@ export default function Partners() {
           {row.map((p, i) => (
             <div
               key={i}
-              className="shrink-0 px-10 py-6 rounded-2xl border border-line bg-surface/80 flex items-center justify-center"
+              className="shrink-0 px-10 py-6 rounded-2xl border border-line bg-surface/80 flex items-center justify-center hover:border-gold/50 hover:bg-surface transition-colors"
             >
-              <span className="text-lg md:text-xl font-extrabold tracking-[0.18em] text-muted whitespace-nowrap transition-colors hover:text-gold">
+              <span className="font-display text-lg md:text-xl font-extrabold tracking-[0.18em] text-muted whitespace-nowrap transition-colors hover:text-gold">
                 {p}
               </span>
             </div>

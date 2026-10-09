@@ -13,10 +13,10 @@ export default function Stats() {
               {i > 0 && (
                 <span className="hidden lg:block absolute top-1/2 -translate-y-1/2 start-0 h-12 w-px bg-line" />
               )}
-              <div className="text-3xl md:text-5xl font-extrabold text-gold">
+              <div className="font-display text-3xl md:text-5xl font-extrabold text-gold-gradient">
                 <CountUp value={s.value} suffix={s.suffix} />
               </div>
-              <div className="mt-2 text-muted text-sm md:text-base font-medium">{s.label}</div>
+              <div className="mt-2.5 text-muted text-sm md:text-base font-medium">{s.label}</div>
             </div>
           ))}
         </div>

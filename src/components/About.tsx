@@ -10,11 +10,19 @@ export default function About() {
         <Reveal>
           <div className="relative">
             <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-gold/25 to-transparent blur-2xl" />
-            <img
-              src="/images/about.jpg"
-              alt="Masar leadership"
-              className="relative rounded-[2rem] w-full aspect-[4/3] object-cover shadow-2xl shadow-black/30 ring-1 ring-line"
-            />
+            <div className="relative overflow-hidden rounded-[2rem] shadow-2xl shadow-black/30 ring-1 ring-line">
+              <img
+                src="/images/ops-warehouse.jpg"
+                alt="Masar workforce managing warehouse operations"
+                className="photo-grade w-full aspect-[4/3] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#14100c]/45 via-transparent to-transparent" />
+              <div className="absolute inset-0 grain opacity-60" aria-hidden="true" />
+              <div className="absolute bottom-5 start-5 inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-ink text-xs font-bold tracking-[0.18em] uppercase">
+                <span className="ornament-star inline-block h-3 w-3" />
+                {t.nav.brand}
+              </div>
+            </div>
             <div className="absolute -bottom-6 -end-4 md:-end-8 glass rounded-2xl px-6 py-4 shadow-xl ring-1 ring-green/30">
               <div className="flex items-center gap-2">
                 <span className="ornament-star inline-block h-4 w-4" />

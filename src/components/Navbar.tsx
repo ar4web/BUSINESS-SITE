@@ -1,18 +1,34 @@
 import { useEffect, useState } from 'react';
 import { Moon, Sun, Languages, Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { useI18n } from '../lib/i18n';
 
 export default function Navbar() {
   const { t, lang, toggleLang, dark, toggleDark } = useI18n();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState('');
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.3 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const ids = ['about', 'sectors', 'compliance', 'stories', 'process', 'news'];
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive('#' + e.target.id)),
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
   }, []);
 
   const links = [
@@ -32,6 +48,11 @@ export default function Navbar() {
           : 'bg-transparent'
       }`}
     >
+      <motion.div
+        style={{ scaleX: progress }}
+        className="absolute bottom-0 inset-x-0 h-[2px] origin-left bg-gradient-to-r from-gold-soft via-gold to-[#9a7433]"
+      />
+
       <div className="max-w-7xl mx-auto px-5 md:px-8 h-[76px] flex items-center justify-between gap-4">
         <a href="#top" className="flex items-center gap-3 group">
           <div className="w-11 h-11 rounded-xl bg-white/90 dark:bg-[#f5efe4] p-1 shadow-lg shadow-black/20 ring-1 ring-gold/40 overflow-hidden">
@@ -48,17 +69,27 @@ export default function Navbar() {
         </a>
 
         <nav className="hidden lg:flex items-center gap-7">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className={`text-sm font-medium transition-colors hover:text-gold ${
-                scrolled ? 'text-ink/80' : 'text-white/85'
-              }`}
-            >
-              {l.label}
-            </a>
-          ))}
+          {links.map((l) => {
+            const isActive = active === l.href;
+            return (
+              <a
+                key={l.href}
+                href={l.href}
+                className={`relative text-sm font-medium transition-colors hover:text-gold ${
+                  scrolled ? (isActive ? 'text-gold' : 'text-ink/80') : isActive ? 'text-gold' : 'text-white/85'
+                }`}
+              >
+                {l.label}
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute -bottom-2 inset-x-0 mx-auto h-1 w-1 rounded-full bg-gold"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2">

@@ -2,7 +2,7 @@ import Reveal, { SectionHeader } from './Reveal';
 import { CalendarDays, ArrowUpRight } from 'lucide-react';
 import { useI18n } from '../lib/i18n';
 
-const images = ['/images/news-1.jpg', '/images/news-2.jpg', '/images/news-3.jpg'];
+const images = ['/images/ops-dining.jpg', '/images/ops-fabrication.jpg', '/images/ops-office.jpg'];
 
 export default function News() {
   const { t } = useI18n();
@@ -19,7 +19,7 @@ export default function News() {
                     src={images[i]}
                     alt={n.title}
                     loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+                    className="photo-grade w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-108"
                   />
                   <span className="absolute top-4 start-4 px-3.5 py-1.5 rounded-full bg-gold text-[#1c1610] text-xs font-bold">
                     {n.tag}

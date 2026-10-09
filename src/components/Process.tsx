@@ -25,7 +25,7 @@ export default function Process() {
                       {i + 1}
                     </span>
                   </div>
-                  <h3 className="mt-6 text-xl font-extrabold text-ink">{s.title}</h3>
+                  <h3 className="mt-6 font-display text-xl font-extrabold text-ink">{s.title}</h3>
                   <p className="mt-2.5 text-muted leading-relaxed text-sm">{s.desc}</p>
                 </div>
               </Reveal>
