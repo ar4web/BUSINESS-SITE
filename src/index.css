@@ -159,10 +159,6 @@ html[lang='ar'] h3 {
   opacity: 0.5;
 }
 
-.glass-hairline {
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--gold) 60%, transparent), transparent);
-}
-
 /* ---- Cinematic photo treatment ---- */
 .photo-grade {
   filter: saturate(1.06) contrast(1.05) brightness(1.02) sepia(0.05);
@@ -181,27 +177,6 @@ html[lang='ar'] h3 {
   mix-blend-mode: overlay;
 }
 
-.vignette::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(120% 90% at 50% 40%, transparent 45%, rgba(16, 12, 8, 0.55) 100%);
-}
-
-/* ---- Premium card frame ---- */
-.card-frame {
-  position: relative;
-  border-radius: 1.75rem;
-  background:
-    linear-gradient(var(--glass-bg), var(--glass-bg)) padding-box,
-    linear-gradient(140deg, color-mix(in srgb, var(--gold) 70%, transparent), transparent 40%, color-mix(in srgb, var(--gold) 35%, transparent)) border-box;
-  border: 1px solid transparent;
-  backdrop-filter: blur(18px) saturate(1.4);
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  box-shadow: 0 26px 60px -28px rgba(0, 0, 0, 0.4);
-}
-
 .text-gold-gradient {
   background: linear-gradient(100deg, var(--gold-soft), var(--gold) 45%, color-mix(in srgb, var(--gold) 70%, #6b4a17));
   -webkit-background-clip: text;
@@ -217,16 +192,6 @@ html[lang='ar'] h3 {
 .section-glow {
   background:
     radial-gradient(700px 340px at 50% -10%, color-mix(in srgb, var(--gold) 12%, transparent), transparent 70%);
-}
-
-.sadu-divider-band {
-  background-image: repeating-linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--gold) 55%, transparent) 0 10px,
-    transparent 10px 20px,
-    color-mix(in srgb, var(--green) 45%, transparent) 20px 30px,
-    transparent 30px 40px
-  );
 }
 
 ::selection {

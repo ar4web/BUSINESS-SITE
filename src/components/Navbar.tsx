@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { useI18n } from '../lib/i18n';
 
 export default function Navbar() {
-  const { t, lang, toggleLang, dark, toggleDark } = useI18n();
+  const { t, lang, dir, toggleLang, dark, toggleDark } = useI18n();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('');
@@ -50,7 +50,7 @@ export default function Navbar() {
     >
       <motion.div
         style={{ scaleX: progress }}
-        className="absolute bottom-0 inset-x-0 h-[2px] origin-left bg-gradient-to-r from-gold-soft via-gold to-[#9a7433]"
+        className={`absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-gold-soft via-gold to-[#9a7433] ${dir === 'rtl' ? 'origin-right' : 'origin-left'}`}
       />
 
       <div className="max-w-7xl mx-auto px-5 md:px-8 h-[76px] flex items-center justify-between gap-4">

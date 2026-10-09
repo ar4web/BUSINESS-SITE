@@ -24,6 +24,7 @@ export default function Gallery() {
         <div className="mt-14 grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] sm:auto-rows-[190px] md:auto-rows-[215px] gap-3 md:gap-4">
           {photos.map((p, i) => {
             const item = t.gallery.items[i];
+            if (!item) return null;
             return (
               <Reveal key={i} delay={i * 0.07} className={p.span}>
                 <figure className="group relative w-full h-full overflow-hidden rounded-[1.75rem] ring-1 ring-line shadow-2xl shadow-black/25">
